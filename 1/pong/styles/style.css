@@ -1,0 +1,50 @@
+body,div{
+    margin:0;
+    padding:0;
+    border:none;
+}
+
+.white{
+    background-color:#fff;
+}
+
+.black{
+    background-color:#000;    
+}
+.square{
+    position:absolute;
+    width:10px;
+    height:10px;
+}
+
+#game{
+     position:relative; 
+     width:460px;
+     height:300px;
+     margin:0 auto;
+     background:#f77;
+     background:-webkit-linear-gradient(left,#aaa 230px, #555 1px);
+     background:-Moz-linear-gradient(left,#aaa 230px, #555 1px);
+     background:-o-linear-gradient(left,#aaa 230px, #555 1px);
+     overflow:hidden;
+     border:10px #000 solid;
+}
+
+#wall{
+    position:absolute;
+    width:10px;
+    height:320px;
+    left:225px;
+    background-color:#000;
+}
+
+#space{
+    position:absolute;
+    width:10px;
+    height:100px;
+    background:#f77;
+    background:-webkit-linear-gradient(left,#aaa 5px, #555 1px);
+    background:-Moz-linear-gradient(left,#aaa 5px, #555 1px);
+    background:-o-linear-gradient(left,#aaa 5px, #555 1px);
+    left:225px;
+}

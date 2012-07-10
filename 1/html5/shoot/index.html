@@ -1,0 +1,42 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+	<meta name="keywords" content="game,html5,canvas">
+	<title>shoot game - by 06wj</title>
+	<link rel="stylesheet" type="text/css" href="styles/style.css" media="all"/>
+</head>
+<body >
+	<div id = "srcImg">
+		<img src="img/ground.jpg" id = "groundImg"/>
+		<img src="img/fire.png" id = "fireImg"/>
+		<img src="img/player.png" id = "playerImg"/>
+		<img src="img/enemy1.png" id = "enemy1Img"/>
+		<img src="img/enemy2.png" id = "enemy2Img"/>
+		<img src="img/enemy3.png" id = "enemy3Img"/>
+		<img src="img/bullet.png" id = "bulletImg"/>
+	</div>
+	<div id="game">
+		<canvas id="ground" width="500" height="500"></canvas>
+		<canvas id="main" width="500" height="500"></canvas> 
+	</div>
+
+	<div id = "author">
+		<h2>only for chrome and firefox <a href = "http://06wjin.sinaapp.com/html5/">More Games</a></h2>
+	</div>
+	
+	<div id = "tip">
+		<p>如果卡的话换chrome浏览器或者按空格换背景</p>
+	</div>
+	<script type="text/javascript" src = "scripts/Const.js"></script>
+	<script type="text/javascript" src = "scripts/Ground.js"></script>
+	<script type="text/javascript" src = "scripts/Vector.js"></script>
+	<script type="text/javascript" src = "scripts/Enemy.js"></script>
+	<script type="text/javascript" src = "scripts/Player.js"></script>
+	<script type="text/javascript" src = "scripts/Bomb.js"></script>
+	<script type="text/javascript" src = "scripts/GameStart.js"></script>
+	<script type="text/javascript" src = "scripts/Main.js"></script>
+	<script type="text/javascript">window.onload = function(){main();}</script>
+</body>
+</html>

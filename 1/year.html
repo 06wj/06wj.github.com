@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>test</title>
+	</head>
+	<body>
+	<div id = "main" style = "background:#f96;width:100px;height:100px"></div>
+	<script>
+		var a = document.getElementById("main");
+		a.onclick = function(e)
+		{
+			this.webkitRequestFullScreen();
+			this.style.background = "#" + (Math.random()*0xffffff >>0).toString(16);
+
+		}
+		a.ontouchstart = function(e)
+		{
+			document.body.style.background = "#" + (Math.random()*0xffffff >>0).toString(16);
+			this.webkitRequestFullScreen();
+
+		}
+		a.ontouchmove = function(e)
+		{
+			e.preventDefault();
+		}
+	</script>
+	</body>
+</html>

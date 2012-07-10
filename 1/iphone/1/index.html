@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" href="img/icon.jpg"/>
+    <link rel="apple-touch-startup-image" href="img/startup.jpg" />
+<title>test</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;}
+</style>
+
+<script type="text/javascript" src="../src/core//base.js"></script>
+<script type="text/javascript" src="../src/event/EventDispatcher.js"></script>
+<script type="text/javascript" src="../src/utils/UIDUtil.js"></script>
+<script type="text/javascript" src="../src/utils/TestUtil.js"></script>
+<script type="text/javascript" src="../src/utils/ImageLoader.js"></script>
+<script type="text/javascript" src="../src/context/Context.js"></script>
+<script type="text/javascript" src="../src/context/CanvasContext.js"></script>
+<script type="text/javascript" src="../src/context/DOMContext.js"></script>
+<script type="text/javascript" src="../src/display/DisplayObject.js"></script>
+<script type="text/javascript" src="../src/display/DisplayObjectContainer.js"></script>
+<script type="text/javascript" src="../src/display/Stage.js"></script>
+<script type="text/javascript" src="../src/display/Bitmap.js"></script>
+<script type="text/javascript" src="../src/display/MovieClip.js"></script>
+<script type="text/javascript" src="Vector.js"></script>
+
+</head>
+
+<body>
+
+<div id="container" style = "background-color:#012b54;width:460px;height:320px;overflow:hidden"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+
+<script type="text/javascript">
+
+var ax,ay,keyState = {};
+window.ondevicemotion = function(event){
+  ax = event.accelerationIncludingGravity.x;
+  ay = event.accelerationIncludingGravity.y;
+
+};
+
+
+window.onload = loadImage;
+
+var container, girl, boy, width, height, stage, canvas, canvasContext, domContext, fps, interval, container, key;
+var bckCircle, bckStar, bckMouse, num, time = 0;
+
+function loadImage()
+{
+	var loader = new FGE.ImageLoader();
+	loader.addEventListener("complete", function(e){
+		
+		bckCircle = new FGE.Bitmap({image:e.images.bckCircle.image, regX:304, regY:280, x:230,y:160});
+		bckMouse = new FGE.Bitmap({image:e.images.bckMouse.image, regX:130, regY:100,x:230,y:160});		
+		bckStar = new FGE.Bitmap({image:e.images.bckStar.image, regX:131.5, regY:132.5,x:230,y:160});		
+		bck = new FGE.Bitmap({image:e.images.bck.image});		
+		
+		num = new FGE.MovieClip({image:e.images.num.image, interval:1.2, regX:95, regY:95,x:230,y:160});	
+		num.addFrame(createFrames(190, 190, 20));
+		
+		player = new FGE.MovieClip({image:e.images.player.image, interval:.5, regX:24.5, regY:40,x:200,y:225});	
+		player.addFrame(createFrames(49, 80, 9));
+		
+		init();
+	});	
+	
+	loader.load([
+					{id:"bckCircle", src:"images/bckCircle.png"}, 
+					{id:"bckMouse", src:"images/bckMouse.png"},
+					{id:'bckStar',src:'images/bckStar.png'},
+					{id:'num',src:'images/num.png'},
+					{id:'bck',src:'images/bck.png'},
+					{id:'player',src:'images/player2.png'}
+				]);	
+}
+
+function init()
+{
+	container = FGE.getDOM("container");
+	key = {};
+	keyControls.init();
+	
+	width = 460;
+	height = 320;
+	
+	canvas = FGE.createDOM("canvas", {width:width, height:height});
+	canvasContext = new FGE.CanvasContext({canvas:canvas});
+	container.appendChild(canvas);
+	domContext = new FGE.DOMContext({canvas:container});
+	
+	fps = 30;
+	interval = 1000 / fps;
+	
+	bckMouse.scaleX = 0;
+	bckMouse.scaleY = 0;
+	bckStar.scaleX = 0;
+	bckStar.scaleY = 0;
+	
+	start();
+}
+
+function start()
+{	
+	stage = new FGE.Stage({container:container, width:width, height:height, context:domContext});
+	stage.setFrameRate(fps);
+	stage.onUpdate = update;
+	
+	stage.addChild(bckCircle);
+	stage.addChild(bckStar);
+	stage.addChild(bckMouse);	
+}
+
+function update()
+{
+	frames++;
+	time++;
+	keyEvent();
+	
+	if(num.currentFrame == 19) 
+	{
+		num.stop();
+		stage.removeChild(num);
+		stage.addChild(bck);
+		stage.addChild(player);
+	}
+	
+	if(time < 10)
+	{
+		bckMouse.scaleX += .1;
+		bckMouse.scaleY += .1;
+	}
+	else if(time < 22)
+	{
+		bckStar.scaleX += .1;
+		bckStar.scaleY += .1;
+		bckStar.rotation += 7;
+	}
+	else if(time < 32)
+	{
+		bckStar.scaleX -= .1;
+		bckStar.scaleY -= .1;
+		bckStar.rotation += 4;
+		bckMouse.scaleX -= .1;
+		bckMouse.scaleY -= .1;
+	}
+	else if(time == 32)
+	{
+		stage.removeChild(bckMouse);
+		stage.removeChild(bckStar);
+		
+		
+		stage.addChild(num);
+		
+	}
+	bckCircle.rotation += 2;
+}
+
+var frames = 0, fpsContainer = FGE.getDOM("fps");
+setInterval(function()
+{
+	fpsContainer.innerHTML = "FPS:" + frames;
+	frames = 0;
+}, 1000);
+
+var keyControls = {
+	init : function()
+	{
+		document.addEventListener("keydown", this.onKeyDown, false);
+		document.addEventListener("keyup", this.onKeyUp, false);
+	},
+	onKeyDown : function(e)
+	{ 
+		key[e.keyCode] = true;
+	},
+	onKeyUp : function(e)
+	{ 
+		key[e.keyCode] = false;
+	}	
+};
+
+function keyEvent()
+{
+	if(key[37] || ay > 2) 
+	{
+		player.scaleX = 1;
+		player.x -= 5;
+	}
+	if(key[39] || ay < -2) 
+	{
+		player.x += 5;
+		player.scaleX = -1;
+	}
+}
+
+function createFrames(width, height, num)
+{
+	var i, frames;
+	for(i = 0,frames = [];i < num;i++)
+	{
+		frames[i] = {rect:[width * i, 0, width, height]}
+	}
+	return frames;
+}
+
+</script>
+
+</body>
+</html>
+
+
+

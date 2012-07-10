@@ -1,0 +1,45 @@
+body {
+		background-color:#333;
+		color:#ff9966;
+}
+
+#author {	
+			position:absolute;
+			left:80px;
+}
+
+#contral {
+			position:absolute;
+			top:70px;
+			left:600px;
+			text-align: center;
+}
+
+#tip {
+			position:absolute;
+			top:70px;
+			left:600px;
+			text-align: center;
+}
+#contral a{
+			position:absolute;
+			top:270px;
+}
+
+#game  {
+		background-color:#000;
+}
+
+#game canvas{
+		position:absolute;
+		top:70px;
+		left:50px;
+}
+
+#srcImg{
+			display:none;
+}
+
+a:link {color: #fff;text-decoration: underline;} /*未访问的链接 */
+a:visited {color: #f26;text-decoration: underline;} /*已访问的链接*/
+a:hover{color: #f00;text-decoration: underline;} /*鼠标在链接上 */

@@ -1,0 +1,4 @@
+name: 06wjin
+version: 1
+handle:
+- mime:  if( path ~ "\.manifest$") type "text/manifest"

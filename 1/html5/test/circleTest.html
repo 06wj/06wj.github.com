@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body onload = init()>
+	 <canvas id = "myCanvas" width = "500" height = "500">你的浏览器不支持canvas!</canvas>
+<script>
+    function init()
+	{
+		var myCanvas = document.getElementById("myCanvas");
+		context =  myCanvas.getContext("2d");
+		
+		box = [];
+		loop();
+		setInterval("loop()", 1000/30);
+	}
+	
+	function loop()
+	{
+		drawCircle();
+	}
+	
+	function drawCircle()
+	{
+		context.save();
+		context.translate(250,250)
+		for(var j = 0;j < 50; j ++)
+		{
+			context.beginPath();
+			for(var i = 0;i < 50; i ++)
+			{
+				context.fillStyle = randomColor();
+				context.arc(0, j * 10, j, 0, Math.PI*2);
+				context.rotate(Math.PI*2/50);	
+			}
+			context.fill();
+		}
+		context.restore();	
+	}
+	
+	function randomColor()
+	{
+		return "#" + parseInt(Math.random()*0xffffff).toString(16);
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+

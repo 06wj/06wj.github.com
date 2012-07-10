@@ -1,0 +1,1 @@
+cmd /k java -jar compiler.jar --js_output_file ../Taiqiu.js --js ../src/Vector.js --js ../src/base.js --js ../src/Line.js --js ../src/Cue.js --js ../src/Ball.js --js ../src/Num.js --js ../src/event.js --js ../src/Player.js --js ../src/ui.js 

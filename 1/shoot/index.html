@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<!-- meta name="viewport" content="user-scalable=no, width=device-width, height=device-height, initial-scale=1.0, minimum-scale=1, maximum-scale=1" / -->
+<meta name="viewport" content="user-scalable=no" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-touch-fullscreen" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+<title>test</title>
+
+<style type="text/css">
+body{margin:0;padding:0;font-size:12px;background-color:#eee;background-image:url(images/wood.jpg);}
+</style>
+
+<script type="text/javascript" src="base.js"></script>
+<script type="text/javascript" src="Ball.js"></script>
+<script type="text/javascript" src="Line.js"></script>
+<script type="text/javascript" src="Vector.js"></script>
+<script type="text/javascript" src="event.js"></script>
+
+</head>
+
+<body>
+<img id = "rollBall" src = "images/rollBall.png" style = "display:none"></img>
+<img id = "bck" src = "images/table.jpg" style = "display:none"></img>
+<img id = "cue" src = "images/cue.png" style = "display:none"></img>
+<div id="container" style="position:absolute;left:0;top:0;"></div>
+<div id="fps" style="position:absolute;left:0;top:0;"></div>
+<script type="text/javascript">
+
+	window.onload = init;
+	$debug = Q.getUrlParams().d;
+	var container, width, height, stage, canvas, canvasContext, domContext, fps, interval;
+	var bck,plane,line,gan;
+	var maxx,maxy,minx,miny;
+	var power = Q.getUrlParams().p||27;
+	
+	function init()
+	{
+		bck = Q.getDOM("bck"),
+		plane = Q.getDOM("rollBall");
+		gan = Q.getDOM("cue");
+			
+		container = Q.getDOM("container");
+	
+		width = 960;
+		height = 600;
+	
+		canvas = Q.createDOM("canvas", {width:width, height:height});
+		canvasContext = new Q.CanvasContext({canvas:canvas});
+		container.appendChild(canvas);
+		domContext = new Q.DOMContext({canvas:container});
+	
+		fps = 60;
+		interval = 1000 / fps;
+	
+		start();
+	}
+
+	function start()
+	{		
+		stage = new Q.Stage({container:container, width:width, height:height, context:Q.getUrlParams().c?canvasContext:domContext});
+		
+		var timer = new Q.Timer(1000/fps);
+		timer.addListener(stage);
+		timer.start();
+		
+		stage.onUpdate = update;
+		
+		bck = new Q.Bitmap({image:bck,width:width,height:height,regX:423.5,regY:219,x:480,y:300});
+		stage.addChild(bck);
+		
+		var num = Q.getUrlParams().n||11;
+		addBalls(num);
+		
+		gan = new Q.Bitmap({image:gan,width:width,height:height,regX:0,regY:15});
+		stage.addChild(gan);
+		
+		line = new Line({image:lineImage,regX:0,regY:0});
+		line.rotation = 10;
+		line.alpha = .5;
+		stage.addChild(line);
+		
+		stage.step();
+		initEvent();
+		initBalls();	
+		minx = 84;
+		miny = 107;
+		maxx = 873;
+		maxy = 488;
+	}
+
+	function update()
+	{
+		frames++;
+		updateBalls();
+		
+		line.x = balls[0].x;
+		line.y = balls[0].y;
+	
+		var tx = pb.x - balls[0].x;
+		var ty = pb.y - balls[0].y;
+	
+		var tlen = tx*tx + ty*ty;
+		line.scaleX = Math.sqrt(tlen);
+		line.rotation = Math.atan2(ty,tx)/Q.RADIAN;
+	
+		if(balls[0].v.getLength()< .5) 
+		{
+			gan.visible = true;
+			pb.visible = true;
+			line.visible = true;
+			pb.loc.x = ex;
+			pb.loc.y = ey;
+		}
+		else 
+		{
+			gan.visible = false;
+			pb.visible = false;
+			line.visible = false;
+			return;
+		}
+		gan.x = line.x - r * Math.cos(line.rotation*Q.RADIAN);
+		gan.y = line.y - r * Math.sin(line.rotation*Q.RADIAN);
+		gan.rotation = line.rotation + 180;
+	}
+
+	var frames = 0, fpsContainer = Q.getDOM("fps");
+	setInterval(function()
+	{
+		fpsContainer.innerHTML = "FPS:" + frames;
+		frames = 0;
+	}, 1000);
+	
+	function initBalls()
+	{
+		for(var i = 0;i < balls.length;i++)
+		{
+			balls[i].drawable.domDrawable.style["borderRadius"] = r + "px";
+			balls[i].drawable.domDrawable.style["boxShadow"] = "6px 6px 12px rgba(0, 0, 0, 0.5)";
+		}
+		pb.drawable.domDrawable.style["borderRadius"] = r + "px";
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
