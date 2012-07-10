@@ -1,6 +1,7 @@
 #demos by 06wj
 
 ##[index](http://06wj.github.com)
+##[bezier](http://06wj.github.com/bezier)
 
 ##Html5 Demo
 
