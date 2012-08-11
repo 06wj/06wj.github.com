@@ -1,6 +1,0 @@
-function Book()
-{
-	
-}
-
-Book.prototype.

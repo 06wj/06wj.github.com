@@ -1,1 +1,0 @@
-cmd /k java -jar compiler.jar --js_output_file billd.game.js --js src/R.js --js src/Billd.js --js src/event.js --js src/game.js
