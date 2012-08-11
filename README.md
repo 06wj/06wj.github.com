@@ -1,7 +1,7 @@
 #demos by 06wj
 
 ##[index](http://06wj.github.com)
-##[bezier](http://06wj.github.com/bezierjs)
+##[Bezier Demo](http://06wj.github.com/bezierjs)
 
 ##Html5 Demo
 
@@ -11,10 +11,10 @@
 * [snake1](http://06wj.github.com/1/line/)
 * [snake2](http://06wj.github.com/1/line2/)
 * [battle city](http://06wj.github.com/1/tank/tank.html)
-* [battle city for ios5](http://06wj.github.com/1/html5/battleCity/)
 * [vector](http://06wj.github.com/1/html5/vector/)
 * [jpe demo](http://06wj.sinaapp.com/jpe/)
 * [billd](http://06wj.github.com/1/html5/billd/)
+* [battle city for ios5](http://06wj.github.com/1/html5/battleCity/)
 * [billd for iphone,ipad](http://06wj.github.com/1/billd/)
 
 
