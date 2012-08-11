@@ -1,0 +1,6 @@
+function Book()
+{
+	
+}
+
+Book.prototype.

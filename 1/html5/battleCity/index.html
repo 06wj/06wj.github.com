@@ -1,0 +1,64 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<meta name="keywords" content="tank,html5,canvas">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="user-scalable=no" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+	<title>battle city</title>
+	<style type="text/css">
+		body,div{
+			margin:0;
+			padding:0;
+			image-rendering: optimizeSpeed;
+		    -webkit-image-rendering: optimizeSpeed;
+		    -webkit-interpolation-mode: nearest-neighbor;
+		    background:black;
+		}
+		#srcImg{display:none;}
+		canvas{position:absolute;}
+		canvas{
+			    position:absolute;
+			    height:545px;
+			    width:626px;
+			    left:217px;
+			}
+
+		#tankAll{
+		    display:none;
+		}
+
+		#game{
+		    background:#000;
+		    height:545px;
+		    width:980px;
+		}
+	</style>
+</head>
+<body >
+	<div id = "srcImg">
+		<img src="img/tankAll.gif" id = "tankAll"/>
+	</div>
+	
+	<div id="game">
+		<canvas id="wall" width="512" height="448"></canvas> 
+		<canvas id="main" width="512" height="448"></canvas>
+		<canvas id="grass" width="512" height="448"></canvas>	
+		<canvas id="upp" width="512" height="448"></canvas> 
+		<canvas id="stage" width="512" height="448"></canvas> 
+	</div>
+	
+	<div id = "ui" style = "display:none">
+		<img id="leftBtn" src = "img/left.png" style="position: absolute; left: 20px; top: 400px; z-index: 9999; "></img>
+		<img id="rightBtn" src = "img/right.png" style="position: absolute; left: 140px; top: 400px; z-index: 9999; "></img>
+		<img id="upBtn" src = "img/up.png" style="position: absolute; left: 80px; top: 340px; z-index: 9999; "></img>
+		<img id="downBtn" src = "img/down.png" style="position: absolute; left: 80px; top: 460px; z-index: 9999; "></img>
+		<img id="fireBtn" src = "img/fire.png" style="position: absolute; left: 880px; top: 450px; z-index: 9999; "></img>
+	</div>
+	<script type="text/javascript" src = "tank.mini.js"></script>
+	
+</body>
+</html>

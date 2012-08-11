@@ -1,0 +1,1 @@
+cmd /k java -jar compiler.jar --js_output_file tank.mini.js --js Const.js --js Sound.js --js Map.js --js MapLevel.js --js StageStart.js  --js Sprite.js --js Score.js --js TankStart.js --js Tank.js --js MyTank.js --js Bullet.js --js HitFx.js --js BombFx.js --js Food.js --js ScoreBoard.js --js Num.js --js Main.js

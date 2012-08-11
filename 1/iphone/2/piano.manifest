@@ -1,0 +1,15 @@
+﻿CACHE MANIFEST
+#version  1
+
+CACHE:
+img/bck.png
+img/bckCircle.png
+img/bckMouse.png
+img/bckStar.png
+img/player2.png
+img/num.png
+
+NETWORK:
+*
+
+

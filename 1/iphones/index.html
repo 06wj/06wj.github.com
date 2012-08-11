@@ -1,0 +1,59 @@
+﻿<!DOCTYPE HTML>
+<html manifest = pisno.manifest>
+<head>
+	<meta name="viewport" content="user-scalable=no, width=device-width, height=device-height,initial-scale=1.0, maximum-scale=1.0"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta name="apple-touch-fullscreen" content="yes" />
+    <link rel="apple-touch-icon" href="img/icon.jpg"/>
+    <link rel="apple-touch-startup-image" href="img/startup.jpg" />
+    <style type="text/css">
+		body,div,canvas,img{
+		position:absolute;
+		border:medium none;
+		margin: 0;
+		padding: 0;
+		image-rendering: optimizeSpeed;
+		-webkit-image-rendering: optimizeSpeed;
+		-webkit-interpolation-mode: nearest-neighbor;
+	}
+		#game{
+			width:460px;
+			height:320px;
+			overflow:hidden;
+		}
+		#player{
+			width:49px;
+			height:80px;
+			background:url(img/player2.png)
+		}
+	</style>
+    <title>iphone</title>
+</head>
+<body>
+	<div id = 'game'>
+		<img id = "ground" src = "img/bck.png"></img>
+		<div id = "piano"></div>
+		<canvas id = "canvas" width = "460" height = "320"></canvas>
+		<canvas id = "btn" width = "153" height = "52"></canvas>
+		<div id = "player" style = "display:none;left:-25px;top:-40px"></div>
+		<div id = "score" style = "left:420px;color:blue"></div>
+		
+	</div>
+	
+	<div id = 'contral'>
+		<canvas id = 'btnLeft'></canvas>
+		<canvas id = 'btnRight'></canvas>
+	</div>
+	
+	<script src = "scripts/Init.js"></script>
+	<script src = "scripts/Sprite.js"></script>
+	<script src = "scripts/MovieClip.js"></script>
+	<script src = "scripts/Player.js"></script>
+	<script src = "scripts/Piano.js"></script>
+	<script src = "scripts/Button.js"></script>
+	<script src = "scripts/Main.js"></script>
+</body>
+</html>
+
+

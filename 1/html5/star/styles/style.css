@@ -1,0 +1,14 @@
+body {
+		background-color:#555;
+		color:#ff9966;
+}
+
+#game canvas{
+		position:absolute;
+		top:70px;
+		left:50px;
+}
+
+a:link {color: #fff;text-decoration: underline;} /*未访问的链接 */
+a:visited {color: #f26;text-decoration: underline;} /*已访问的链接*/
+a:hover{color: #f00;text-decoration: underline;} /*鼠标在链接上 */

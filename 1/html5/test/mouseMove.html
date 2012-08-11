@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+</head>
+<body onload = init()>
+	 <canvas id = "myCanvas">你的浏览器不支持canvas!</canvas>
+<script>
+    var context,W,H,h,
+		mx = 0,
+		my = 0,
+		isMove = false,
+		nx = 0,
+		ny = 0,
+		nr,nn,
+		ang = .1,
+		vr = 2,
+		type = -1;
+	
+	function init()
+	{
+		var myCanvas = document.getElementById("myCanvas");
+		context =  myCanvas.getContext("2d");
+		W = myCanvas.width = window.innerWidth;
+		H = myCanvas.height = window.innerHeight;
+		context.fillStyle = "#000";
+		context.fillRect(0, 0, W, H);
+		context.globalCompositeOperation = "lighter";
+		h = 0;
+		setInterval("loop()", 1000/24);
+	}
+	
+	function loop()
+	{
+		if(nx == mx && ny == my)//鼠标不动	
+		{
+			drawBlack();
+			drawText();
+			drawStar(mx, my, nr, nn);
+			nr += vr;
+			nn = type == -1?8:4;			
+			ang += Math.PI*2/360;
+			if(nr > 200) vr = -2;
+			if(nr < 5) vr = 2;
+		}
+	
+		nx = mx;
+		ny = my;
+	}
+	
+	function drawBlack()
+	{
+		context.save();
+		context.globalCompositeOperation = "source-over";
+		context.fillStyle = 'rgba(0,0,0,.02)';
+		context.fillRect(0, 0, W, H);
+		context.restore();
+	}
+	
+	function drawText()
+	{
+		context.save();
+		context.fillStyle = "#fff";
+		context.fillText("click to chang the style", 10, 10);
+		context.restore();
+	}
+	
+	function drawStar(x, y, r, n)
+	{
+		context.save();  
+		context.translate(x,y);
+		context.moveTo(r,0);  
+		
+		context.lineWidth = 0.2;		
+		var len = n * 2;
+		for(var j = 0; j < 10; j ++)
+		{
+			if(type == 1) context.rotate(Math.PI*2/7 + ang);
+			else context.rotate(Math.PI*2/133 + ang);
+			context.beginPath(); 
+			context.strokeStyle = "hsla(" + (h % 360) + ",100%,50%,1)"; 
+			h-=.5;			
+			if(type == 1)
+			{
+				for (var i=0;i < len;i++)
+				{  
+					 context.rotate(Math.PI/n);  
+					 if(i%2 == 0) 
+					 {  
+						context.lineTo((r/0.525731)*0.200811,0);  
+					 } 
+					 else 
+					 {  
+						context.lineTo(r,0);  
+					 }
+				}
+			}
+			else 
+			{
+				for (i = 0;i < n;i++)
+				{  
+					context.rotate(Math.PI*2/n);
+					context.lineTo(r, 0);
+				}
+			}
+			context.closePath();  
+			context.stroke();
+		}
+
+		context.restore(); 
+		
+	}
+	
+	
+	document.onmousemove = function(e)
+	{
+		mx = e.x;
+		my = e.y;
+		nr =  Math.random()*20;
+		nn = parseInt(Math.random()*4 + 3);
+		drawStar(mx, my, nr, nn);
+	}	
+	
+	document.onclick = function(e)
+	{
+		type *= -1;
+	}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
