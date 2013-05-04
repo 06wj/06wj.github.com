@@ -4,7 +4,7 @@
 ##[Bezier Demo](http://06wj.github.com/bezierjs)
 
 ##Html5 Demo
-
+* [比尔德冒险](http://littlebilld.duapp.com/FL/example/billd/)
 * [shoot game1](http://06wj.github.com/1/html5/shoot/)
 * [shoot game2](http://06wj.github.com/1/html5/shoot2/)
 * [Ball Game](http://06wj.github.com/1/w/q/)
