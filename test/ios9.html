@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>test</title>
+    <style>
+        body{
+            margin:0px;
+        }
+
+        #fps{
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+<div id="fps">60</div>
+<canvas id="canvas"></canvas>
+<script>
+    var num = 0;
+    var fpsElem = document.getElementById("fps");
+    var canvas = document.getElementById("canvas");
+    var canvasWidth = innerWidth;
+    var canvasHeight = innerHeight;
+    var ctx = canvas.getContext("2d");
+
+    canvas.width = canvasWidth;
+    canvas.height = canvasHeight;
+
+    var t;
+    var start = function(){
+        clearInterval(t);
+        t = setInterval(function(){
+            for(var i = 0;i < 300;i ++){
+                ctx.clearRect(0, 0, canvasWidth, canvasHeight);
+            }
+            num ++;
+        }, 1000/60);
+    };
+
+    start();
+
+    var lastTime = Date.now();
+    setInterval(function(){
+        var nowTime = Date.now();
+        fps.innerHTML = (num*1000/(nowTime-lastTime)).toFixed(2);
+        lastTime = nowTime;
+        num = 0;
+    }, 1000);
+</script>
+</body>
+</html>
